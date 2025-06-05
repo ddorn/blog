@@ -1,0 +1,370 @@
+/* Bearblog theme matching personal website */
+/* Inspired by Diego's personal website design */
+
+/* Import Avenir fonts from ddorn.fr */
+@font-face {
+    font-family: 'Avenir';
+    src: url('https://ddorn.fr/static/fonts/avenir/AvenirLTStd-Roman.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('https://ddorn.fr/static/fonts/avenir/AvenirLTStd-Oblique.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('https://ddorn.fr/static/fonts/avenir/AvenirLTStd-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('https://ddorn.fr/static/fonts/avenir/AvenirLTStd-MediumOblique.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('https://ddorn.fr/static/fonts/avenir/AvenirLTStd-Book.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('https://ddorn.fr/static/fonts/avenir/AvenirLTStd-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --width: 40rem;
+    --font-main: 'Avenir', 'Inter', 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-secondary: 'Avenir', 'Inter', 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-scale: 1.25rem;
+
+    /* Dark theme colors */
+    --background-color: #151C23;
+    /* Dark background similar to Tailwind's gray-900 */
+    --text-color: #C1C7CE;
+    /* Light text */
+    --heading-color: #f9fafb;
+    /* Slightly lighter for headings */
+
+    /* Bright accent colors from your site */
+    --link-color: #ffe091;
+    /* Yellow links */
+    --link-hover-color: #fbbf24;
+    --accent-blue: #5ad4e6;
+    --accent-orange: #fd8e4e;
+    --accent-purple: #948ae3;
+    --accent-green: #b7ffb7;
+    --accent-pink: #FF6188;
+
+    --bold-color: var(--accent-pink);
+    --italic-color: var(--accent-orange);
+
+    /* Other colors */
+    --border-color: #5ad4e6;
+    --code-background-color: #1f2937;
+    --code-color: #e5e7eb;
+    --blockquote-color: #d1d5db;
+    --hr-color: #fd8e4e;
+    --caption-color: #9ca3af;
+}
+
+body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    line-height: 1.75;
+    margin: 0;
+    padding: 3rem 1.5rem;
+    max-width: var(--width);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Headings with bright colors */
+h1 {
+    color: var(--accent-green);
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+h3 {
+    color: var(--accent-blue);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+h4,
+h5,
+h6 {
+    color: var(--accent-purple);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+strong {
+    color: var(--bold-color);
+    font-weight: 900;
+}
+
+em {
+    color: var(--italic-color);
+    font-style: italic;
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation */
+nav a {
+    color: var(--accent-purple);
+    margin-right: 1rem;
+}
+
+/* Paragraphs */
+p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+b {
+    color: var(--heading-color);
+}
+
+/* Lists */
+ul,
+ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Images - keep them reasonably sized */
+img {
+    max-width: 100%;
+    max-height: 24rem;
+    /* Limit height to 24rem (384px) */
+    height: auto;
+    border-radius: 0.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    /* Maintain aspect ratio */
+}
+
+/* Prevent images from being too large */
+.post img,
+.page img {
+    max-width: min(100%, 32rem);
+    /* Cap at 32rem (512px) */
+    max-height: 24rem;
+    /* Limit height to 24rem (384px) */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    /* Maintain aspect ratio without cropping */
+}
+
+img+em {
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--caption-color);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* Code */
+code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+}
+
+.highlight,
+.code {
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 3px solid var(--accent-orange);
+    color: var(--blockquote-color);
+    padding-left: 1.5rem;
+    margin-left: 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid var(--hr-color);
+    margin: 4rem 0;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th,
+td {
+    padding: 0.5rem;
+    border: 1px solid #374151;
+    text-align: left;
+}
+
+th {
+    background-color: var(--code-background-color);
+    font-weight: 600;
+}
+
+/* Blog post list */
+ul.blog-posts {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+ul.blog-posts li {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #374151;
+    line-height: 1.6;
+}
+
+ul.blog-posts li:last-child {
+    border-bottom: none;
+}
+
+details {
+    margin-bottom: 2rem;
+    background-color: var(--code-background-color);
+    padding: 1rem 2rem;
+    border-radius: 0.25rem;
+}
+
+/* Focus styles */
+:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 0.125rem;
+    border-radius: 0.25rem;
+}
+
+/* Header */
+
+header .title {
+    display: none;
+}
+nav {
+    text-align: left;
+}
+
+
+/* Footer */
+footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    color: #9ca3af;
+    font-size: 0.9em;
+}
+
+/* Specific bearblog elements */
+.post-title {
+    color: var(--accent-green) !important;
+}
+
+.post-meta {
+    color: #9ca3af;
+    font-size: 0.9em;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+
+/* Article/post content spacing */
+article,
+.post-content {
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    body {
+        padding: 1rem 0.75rem;
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        line-height: 2rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+}
