@@ -334,6 +334,71 @@ footer {
     font-size: 0.9em;
 }
 
+/* Email signup form styling */
+form[class="email-signup"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+form[class="email-signup"] input[type="email"] {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem !important;
+    border: 1px solid #4b5563 !important;
+    border-radius: 0.25rem;
+    background-color: #1f2937 !important;
+    color: #f9fafb !important;
+    width: 100%;
+    max-width: 18rem;
+    transition: border-color 0.2s ease;
+}
+
+form[class="email-signup"] input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+form[class="email-signup"] input[type="email"]::placeholder {
+    color: #9ca3af;
+}
+
+form[class="email-signup"] input[type="submit"] {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--accent-orange);
+    color: var(--background-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form[class="email-signup"] input[type="submit"]:hover {
+    background-color: #ea580c;
+}
+
+form[class="email-signup"] input[type="submit"]:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Responsive email form */
+@media (min-width: 640px) {
+    form[class="email-signup"] {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    form[class="email-signup"] input[type="email"] {
+        margin-right: 0.5rem;
+        margin-bottom: 0;
+    }
+}
 /* Specific bearblog elements */
 .post-title {
     color: var(--accent-green) !important;
