@@ -1,5 +1,3 @@
-Hydration and indoor CO₂ concentration have a lot more impact on my cognition than I expected.
-
 At home, I often found it hard to focus, felt dizzy, tired, or generally less sharp. I would find myself with very low energy and having trouble getting up from our couch or the armchair. This was terrible for my productivity and mood, I had to fix it.
 
 After some research and a meeting with a doctor, I identified four possible causes: insufficient hydration, iron deficiency, sleep apnea, and high CO₂ concentration in the room. I now believe it was both too much CO₂ accumulating in the room and me not drinking enough water.
