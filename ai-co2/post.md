@@ -4,6 +4,8 @@ But measuring the impact of a given interaction with an LLM is not straightforwa
 
 A good starting point to propose an answer is Google's recent paper "[Measuring the environmental impact of delivering AI at Google Scale](https://arxiv.org/abs/2508.15734)" (2025, August 21). They measured emissions across their whole fleet of servers running the Gemini apps, and despite not being a proper lifecycle assessment, included more sources of emissions than many studies. From this, they report two main numbers: the median prompt on Gemini apps uses 0.24 Wh, equivalent to 0.03g CO₂e.[^water-use]
 
+## The 'median prompt'
+
 The usefulness of those numbers depends entirely on *what is a 'median prompt'* and how stable and representative it is as a unit. Scalar metrics are great, because they are easy to share and understand, but there are a few properties of prompts that make scalar metrics hard to develop well.
 
 **Prompt size.** Prompts can vary in size by at least 3 orders of magnitude. From a quick "hi!" using few thousand tokens[^system-prompt-2800] to "translate this whole book to French" using up to a million tokens (the maximum context window of Gemini 2.5), emissions depend strongly on the prompt length and on the length of its answer. This is exacerbated by the relationship between prompt lengths and emission being non-linear (likely quadratic, due to the attention algorithm), meaning that a 4x longer prompt would use more than 4x the energy. This makes it crucial to specify the length of a prompt and its answer, as has been done for instance in the [LCA of Mistral Large 2](https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai), which considers only 400-token responses.
@@ -18,25 +20,43 @@ The median is also much lower than the average, but the average is as about as m
 
 The best solution for this is to *communicate the full distribution*. Using the median discards the most energy-intensive half of the generations, which are much more energy-intensive than the bottom half and are the generations at the core of the challenge of energy optimisation.
 
+## What to count
+
 Even with a proper methodology on _how_ to count emissions, there are also a lot of choices on _what_ to count.
 
 **Location-based emissions.** Emissions should be reported using location-based emissions, and not market-based emissions. The location-based emissions correspond to the carbon emitted by the datacenters, which is the main figure of interest. On the other hand, market-based emissions are an accountability figure. They correspond to the location-based emissions minus the amount of clean energy certificates bought by a company. Those clean energy certificates are comparable to independent investments in renewable energy, and cannot be meaningfully removed from the datacenter's emissions. For instance, if Google had bought twice as many certificates, they could have concluded that their LLM apps have negative emissions, and actually remove carbon from the atmosphere!
 
-**Decisions inform metrics.** Now, if there's one thing I've learned from reading "[How to Measure Anything](https://www.goodreads.com/book/show/444653.How_to_Measure_Anything)", it's that the goal of measuring is to enable better decision-making, and so we should design our metrics based on which decisions we need to make.
+**Sources of emissions.**
+- model training / total use
+- all inference
+- datacenter construction, teardown
+- employees commuting
 
-**Striving to be better.** To have an honest conversation about the environmental impact of LLM use, future papers will need to:
+
+## Metric design
+
+Now, if there's one thing I've taken from reading [How to Measure Anything](https://www.goodreads.com/book/show/444653.How_to_Measure_Anything), it's that before measuring something, one should ask why they are measuring it, and that this answer should be "to take a better decision". Given this, we should design our metrics to make them most informative based on which decisions we need to make.
+
+So what decisions need to be made, and what is needed for it?
+
+My main question, and what got me here in the first place, is wether I need to reduce my use of AI to align with my personal evironmental goals. My estimates of my emissions from LLM use range from a few kilos to a few tons. If it turns out to be a few tons, I want to drasticly select what I use it for, but if it's a few kilos, it's irrelevant in my yearly emissions.
+
+App developpers have a similar question: which provider will have the best trade-off between quality, cost, and environmental impact for my usecase? (if they care at all about environmental impact)
+
+Policymakers have different questions. Should environmental policies focus more on training or inference? How can we expect power usage of training/inference to grow over time?
+
+**Better metrics.**
+To answer those questions and have an honest conversation about the environmental impact of LLM use, future papers would need to:
 
 1.  Report emissions separately for each model
-2.  When giving per-prompt estimates, report the prompt and completion length
-3.  Or better: report emissions for multiple or all prompt and answer lengths
-4.  Even better: report emissions for every usage percentile, not only the 50th (along with the prompt lengths at each percentile)
-5.  Always use location-based emissions to report about usage emissions
+1.  When giving per-prompt estimates, report the prompt and completion length
+1.  Ideal: report expected emissions for multiple or all prompt and answer lengths
+1.  Always use location-based emissions to report about usage emissions
+1.  Report total training and inference emissions per model
 
-**Science is collaborative.** These methodological choices have a significant, cumulative effect on a paper's conclusions. They also highlight the importance of the peer-review process, which is designed specifically to challenge these kinds of methodological assumptions before publication. An external reviewer of this paper would almost certainly have questioned whether the 'median prompt' is a robust metric or why the costs of high-end models were not disaggregated.
+**Science is collaborative.** These methodological choices have a significant, cumulative effect on a report's conclusions, and highlight the importance of the peer-review process, which is designed specifically to challenge these kinds of methodological assumptions before publication. An external reviewer of this paper would almost certainly have questioned whether the 'median prompt' is a robust metric or why the costs of high-end models were not disaggregated. So,
 
-**Even better.** If I had the time and access, I would try to provide a **predictive model** of per-prompt emission. It isn't possible to measure directly the power used by a single prompt because of batching, but one can surely model it using the coarse estimates of power consumption of a group of prompts.
-
-The relationship between prompt length, model, modalities, and emissions is surely piecewise linear or quadratic, and LLM providers have more than enough data to fit such a model. I would then create a small page where users can see how much emissions a specific prompt would likely produce, and even connect their Gemini account to get detailed reports. This is empowering transparency.
+6. Submit their methodology to peer review
 
 ## Footnotes
 
